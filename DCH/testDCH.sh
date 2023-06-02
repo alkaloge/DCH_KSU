@@ -1,0 +1,1 @@
+python DCHv1.py -f /eos/uscms/store/user/alkaloge/HHAnalysis/HPlusPlusHMinusMinusHTo4L_M-1000_TuneCP5_13TeV_pythia8/output_1.root  -o skim_HDC_M-1000.root --nickName H2p2mHRTo4L_M_1000 -y 2017 -s ZH -w 0 -j 0 -n 10000 -e UL
