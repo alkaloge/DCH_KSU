@@ -25,12 +25,12 @@ inside the makeCondor.py there is a hidden switch --concatenate that groups inpu
 
 a typical .sh set the CMSSW area and then executes the code and finally copies the .root to the final destinations
 <pre>
-cp cuts_DCH_2018.yaml cuts.yaml <br>
+cp cuts_DCH_2018.yaml cuts.yaml 
 xrdcp  root://cmseos.fnal.gov//store/mc/RunIISummer20UL18NanoAODv9/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-
-v2/80000/0B37487E-FC2E-D64C-89C1-F15ACD3F1904.root inFile.root <br>
-python DCH.py -f inFile.root -o WJetsToLNu_NLO_001.root --nickName WJetsToLNu_NLO -y 2018 -s DCH -w 1 -j no <br>
-rm inFile*.root <br>
-xrdcp WJetsToLNu_NLO_001.ntup root://cmseos.fnal.gov//store/group/lpcsusyhiggs/ntuples/nAODv9/DCH_out/WJetsToLNu_NLO_2018/WJetsToLNu_NLO_001.root  <br>
+v2/80000/0B37487E-FC2E-D64C-89C1-F15ACD3F1904.root inFile.root 
+python DCH.py -f inFile.root -o WJetsToLNu_NLO_001.root --nickName WJetsToLNu_NLO -y 2018 -s DCH -w 1 -j no 
+rm inFile*.root 
+xrdcp WJetsToLNu_NLO_001.ntup root://cmseos.fnal.gov//store/group/lpcsusyhiggs/ntuples/nAODv9/DCH_out/WJetsToLNu_NLO_2018/WJetsToLNu_NLO_001.root  
 </pre>pre>
 
 
