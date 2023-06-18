@@ -25,12 +25,12 @@ inside the makeCondor.py there is a hidden switch --concatenate that groups inpu
 
 a typical .sh looks like
 
-`#!/bin/bash
+#!/bin/bash
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 export SCRAM_ARCH=slc7_amd64_gcc820 
 
-eval "`"scramv1 project CMSSW CMSSW_10_6_5"`"
+eval `scramv1 project CMSSW CMSSW_10_6_5`
 
 cd CMSSW_10_6_5/src
 
@@ -67,7 +67,7 @@ xrdcp WJetsToLNu_NLO_001.ntup root://cmseos.fnal.gov//store/group/lpcsusyhiggs/n
 
 .....
 
-`
+
 
 Please Note, that each file is copied, the DCH.py is executed (`-w 1` flag also saves the genWeights in a TH1F in the final file) and the .ntup is copied on a /eos area. This is an example, please edit the destination to your liking
 
