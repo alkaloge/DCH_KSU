@@ -123,7 +123,7 @@ for nFile in range(0, len(dataset),mjobs) :
 
 
     maxx = mjobs
-    if counter+mjobs >= len(dataset) : 
+    if counter+mjobs > len(dataset) : 
 	print 'should include', nFile, -nFile-mjobs + len(dataset)+1, 'from ', len(dataset), counter
 	maxx = len(dataset)-counter
 	#for j in range(0,mjobs) :
@@ -172,7 +172,7 @@ for nFile in range(0, len(dataset),mjobs) :
 
 
 wdir='/uscms_data/d3/alkaloge/MetStudies/nAOD/CMSSW_10_6_5/src/'
-wdir =='/uscms_data/d3/alkaloge/DCH/CMSSW_10_6_5/src/DCH_KSU/'
+wdir='/uscms_data/d3/alkaloge/DCH/CMSSW_10_6_5/src/DCH_KSU/'
 dirMC = wdir+"/MC/"
 dirCode = wdir+"/DCH"
 dirData = wdir+"/data/"

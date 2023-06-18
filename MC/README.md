@@ -21,7 +21,7 @@ python ../../makeCondor.py --dataSet /HPlusPlusHMinusMinusHTo2L_M-1000_TuneCP5_1
 
 once executed, it will create inside the `./MC/DCH/HppM1000_2018` dir all the .sh and .jdl necessary for the work
 
-inside the makeCondor.py there is a hidden switch --concatenate that groups input .root files into one job - default is 3 - **ATTENTION** - if you edit that and you re-execute the  runMC_2018_DCH.csh then you will end up in a situation where you have several .sh with overlapping input/output files. If you edit the concatenate, FIRST make sure to delete the corresponding MC/MYDATASET dir
+inside the makeCondor.py there is the `-c `switch that groups input .root files into one job - default is 3 - **ATTENTION** - if you edit that and you re-execute the  runMC_2018_DCH.csh then you will end up in a situation where you have several .sh with overlapping input/output files. If you edit the concatenate, FIRST make sure to delete the corresponding MC/MYDATASET dir
 
 a typical .sh set the CMSSW area and then executes the code and finally copies the .root to the final destinations
 <pre>
