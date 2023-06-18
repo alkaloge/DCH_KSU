@@ -12,7 +12,7 @@ from math import sqrt, pi
 sys.path.insert(1,'../funcs/')
 import tauFunDCH as TF
 import generalFunctions as GF 
-import Weights 
+#import Weights 
 import outTuple
 import time
 
@@ -176,11 +176,11 @@ if args.weights > 0 :
     
 print("Opening {0:s} as output.".format(outFileName))
 
-sysT = ["Central"]
 
 sysall = ['scale_e', 'scale_m_etalt1p2', 'scale_m_eta1p2to2p1', 'scale_m_etagt2p1',
 'scale_t_1prong', 'scale_t_1prong1pizero', 'scale_t_3prong', 'scale_t_3prong1pizero']
 
+sysT = ['Central']
 
 upS=sysall
 downS=sysall
@@ -215,7 +215,7 @@ for i,j in enumerate(outTuple.allsystMET):
 
 
 
-Weights=Weights.Weights(args.year)
+#Weights=Weights.Weights(args.year)
 
 for count, e in enumerate( inTree) :
     
@@ -309,11 +309,11 @@ for count, e in enumerate( inTree) :
 		tauMass.append(e.Tau_mass[j])
 		tauPt.append(e.Tau_pt[j])
 
-    
     for isyst, systematic in enumerate(sysT) : 
+        '''
 	if isyst>0 : #use the default pT/mass for Ele/Muon/Taus before doing any systematic
 	#if 'Central' in systematic or 'prong' in systematic : #use the default pT/mass for Ele/Muon/Taus before doing the Central or the tau_scale systematics ; otherwise keep the correction
-
+         
 	    for j in range(e.nMuon): 
                 e.Muon_pt[j] = muPt[j]
                 e.Muon_mass[j] = muMass[j]
@@ -325,11 +325,18 @@ for count, e in enumerate( inTree) :
                 e.Tau_mass[j] = tauMass[j]
              
 
-        
 	if isMC: 
+            metlist, philist = [], []
+	    #met_pt, met_phi, metlist, philist = Weights.applyES(e, args.year, systematic, metPtPhi, allMET)
+	    try : 
+                met_pt, met_phi = e.MET_T1_pt, e.MET_T1_phi
+		metlist.append(e.MET_T1_pt)
+		philist.append(e.MET_T1_phi)
+            except  AttributeError : 
+                met_pt, met_phi = e.MET_pt, e.MET_phi
+		metlist.append(e.MET_pt)
+		philist.append(e.MET_phi)
 
-	    met_pt, met_phi, metlist, philist = Weights.applyES(e, args.year, systematic, metPtPhi, allMET)
-	    
 	    if systematic == 'Central' :
 		for i, j in enumerate (metlist): 
 
@@ -337,7 +344,7 @@ for count, e in enumerate( inTree) :
 		for i, j in enumerate (philist): 
 		    outTuple.list_of_arrays[i+len(metlist)][0] = philist[i]
 
-
+        '''
 
 	goodElectronList = TF.makeGoodElectronListDCH(e)
 	goodMuonList = TF.makeGoodMuonListDCH(e)
