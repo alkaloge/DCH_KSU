@@ -174,7 +174,7 @@ for nFile in range(0, len(dataset),mjobs) :
 wdir='/uscms_data/d3/alkaloge/MetStudies/nAOD/CMSSW_10_6_5/src/'
 wdir='/uscms_data/d3/alkaloge/DCH/CMSSW_10_6_5/src/DCH_KSU/'
 dirMC = wdir+"/MC/"
-dirCode = wdir+"/DCH"
+dirCode = wdir+"/DCH/"
 dirData = wdir+"/data/"
 funcsDir = wdir+"/funcs/"
 toolsDir = wdir+"/tools/"
