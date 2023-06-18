@@ -15,8 +15,8 @@ the `-l` flag : if no, then it gets the dataset from DBS - if 'yes', then it can
 
 
 # Step 3 - take a look on the produced .sh from the previous step - it should have lines like
-`mkdir -p DCH/HppM1000_2018 <br>
-cd DCH/HppM1000_2018<br>
+`mkdir -p DCH/HppM1000_2018 <br/>
+cd DCH/HppM1000_2018<br/>
 python ../../makeCondor.py --dataSet /HPlusPlusHMinusMinusHTo2L_M-1000_TuneCP5_13TeV_pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM --nickName HppM1000 --mode anaXRD --year 2018 -c 5 -s DCH -j no -l no`
 
 once executed, it will create inside the `./MC/DCH/HppM1000_2018` dir all the .sh and .jdl necessary for the work
@@ -25,26 +25,26 @@ inside the makeCondor.py there is a hidden switch --concatenate that groups inpu
 
 a typical .sh looks like
 
-`#!/bin/bash<br>
-source /cvmfs/cms.cern.ch/cmsset_default.sh<br>
-export SCRAM_ARCH=slc7_amd64_gcc820<br>
-eval `scramv1 project CMSSW CMSSW_10_6_5` <br>
-cd CMSSW_10_6_5/src<br>
-eval `scramv1 runtime -sh` <br>
-cmsenv <br>
-cd ${_CONDOR_SCRATCH_DIR}/CMSSW_10_6_5/src/<br>
-scram b -j 4<br>
-echo ${_CONDOR_SCRATCH_DIR}<br>
-cd ${_CONDOR_SCRATCH_DIR}/CMSSW_10_6_5/src/<br>
-cp ${_CONDOR_SCRATCH_DIR}/* .<br>
-tar -zxvf correctionlib.tar.gz<br>
+`#!/bin/bash<br/>
+source /cvmfs/cms.cern.ch/cmsset_default.sh<br/>
+export SCRAM_ARCH=slc7_amd64_gcc820<br/>
+eval `scramv1 project CMSSW CMSSW_10_6_5` <br/>
+cd CMSSW_10_6_5/src<br/>
+eval `scramv1 runtime -sh` <br/>
+cmsenv <br/>
+cd ${_CONDOR_SCRATCH_DIR}/CMSSW_10_6_5/src/<br/>
+scram b -j 4<br/>
+echo ${_CONDOR_SCRATCH_DIR}<br/>
+cd ${_CONDOR_SCRATCH_DIR}/CMSSW_10_6_5/src/<br/>
+cp ${_CONDOR_SCRATCH_DIR}/* .<br/>
+tar -zxvf correctionlib.tar.gz<br/>
 ls -altrh
-echo 'this is the working dir' ${_CONDOR_SCRATCH_DIR}<br>
-cp cuts_DCH_2018.yaml cuts.yaml<br>
-xrdcp  root://cmseos.fnal.gov//store/mc/RunIISummer20UL18NanoAODv9/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/80000/0B37487E-FC2E-D64C-89C1-F15ACD3F1904.root inFile.root<br>
-python DCH.py -f inFile.root -o WJetsToLNu_NLO_001.root --nickName WJetsToLNu_NLO -y 2018 -s DCH -w 1 -j no<br>
-rm inFile*.root<br>
-xrdcp WJetsToLNu_NLO_001.ntup root://cmseos.fnal.gov//store/group/lpcsusyhiggs/ntuples/nAODv9/DCH_out/WJetsToLNu_NLO_2018/WJetsToLNu_NLO_001.root <br>
+echo 'this is the working dir' ${_CONDOR_SCRATCH_DIR}<br/>
+cp cuts_DCH_2018.yaml cuts.yaml<br/>
+xrdcp  root://cmseos.fnal.gov//store/mc/RunIISummer20UL18NanoAODv9/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/80000/0B37487E-FC2E-D64C-89C1-F15ACD3F1904.root inFile.root<br/>
+python DCH.py -f inFile.root -o WJetsToLNu_NLO_001.root --nickName WJetsToLNu_NLO -y 2018 -s DCH -w 1 -j no<br/>
+rm inFile*.root<br/>
+xrdcp WJetsToLNu_NLO_001.ntup root://cmseos.fnal.gov//store/group/lpcsusyhiggs/ntuples/nAODv9/DCH_out/WJetsToLNu_NLO_2018/WJetsToLNu_NLO_001.root <br/>
 .....
 `
 
