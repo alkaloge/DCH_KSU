@@ -23,49 +23,15 @@ once executed, it will create inside the `./MC/DCH/HppM1000_2018` dir all the .s
 
 inside the makeCondor.py there is a hidden switch --concatenate that groups input .root files into one job - default is 3 - **ATTENTION** - if you edit that and you re-execute the  runMC_2018_DCH.csh then you will end up in a situation where you have several .sh with overlapping input/output files. If you edit the concatenate, FIRST make sure to delete the corresponding MC/MYDATASET dir
 
-a typical .sh looks like
-
-#!/bin/bash
-source /cvmfs/cms.cern.ch/cmsset_default.sh
-
-export SCRAM_ARCH=slc7_amd64_gcc820 
-
-eval `scramv1 project CMSSW CMSSW_10_6_5`
-
-cd CMSSW_10_6_5/src
-
-eval `scramv1 runtime -sh` 
-
-cmsenv 
-
-cd ${_CONDOR_SCRATCH_DIR}/CMSSW_10_6_5/src/
-
-scram b -j 4
-
-echo ${_CONDOR_SCRATCH_DIR}
-
-cd ${_CONDOR_SCRATCH_DIR}/CMSSW_10_6_5/src/
-
-cp ${_CONDOR_SCRATCH_DIR}/* .
-
-tar -zxvf correctionlib.tar.gz
-
-ls -altrh
-
-echo 'this is the working dir' ${_CONDOR_SCRATCH_DIR}
-
+a typical .sh set the CMSSW area and then executes the code and finally copies the .root to the final destinations
+`
 cp cuts_DCH_2018.yaml cuts.yaml
-
 xrdcp  root://cmseos.fnal.gov//store/mc/RunIISummer20UL18NanoAODv9/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-
 v2/80000/0B37487E-FC2E-D64C-89C1-F15ACD3F1904.root inFile.root
-
 python DCH.py -f inFile.root -o WJetsToLNu_NLO_001.root --nickName WJetsToLNu_NLO -y 2018 -s DCH -w 1 -j no
-
 rm inFile*.root
-
 xrdcp WJetsToLNu_NLO_001.ntup root://cmseos.fnal.gov//store/group/lpcsusyhiggs/ntuples/nAODv9/DCH_out/WJetsToLNu_NLO_2018/WJetsToLNu_NLO_001.root 
-
-.....
+`
 
 
 
