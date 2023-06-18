@@ -23,7 +23,8 @@ once executed, it will create inside the `./MC/DCH/HppM1000_2018` dir all the .s
 
 inside the makeCondor.py there is a hidden switch --concatenate that groups input .root files into one job - default is 3 - **ATTENTION** - if you edit that and you re-execute the  runMC_2018_DCH.csh then you will end up in a situation where you have several .sh with overlapping input/output files. If you edit the concatenate, FIRST make sure to delete the corresponding MC/MYDATASET dir
 
-a typical .sh looks like 
+a typical .sh looks like
+
 `#!/bin/bash
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 export SCRAM_ARCH=slc7_amd64_gcc820
