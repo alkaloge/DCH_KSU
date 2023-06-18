@@ -137,6 +137,10 @@ for nFile in range(0, len(dataset),mjobs) :
 	infile = "inFile.root"
 
         outLines.append("xrdcp  root://cmseos.fnal.gov/{0:s} {1:s}\n".format(fileloop, infile)) 
+        outLines.append("if [ ! -f inFile.root ] ; \n then \n xrdcp root://cmsxrootdfnal.gov/{0:s} {1:s}\n fi \n".format(fileloop, infile))
+        outLines.append("if [ ! -f inFile.root ] ; \n then \n xrdcp root://cms-xrd-global.cern.ch/{0:s} {1:s}\n fi \n".format(fileloop, infile))
+        
+
 
 	outFileName = "{0:s}_{1:03d}.root".format(args.nickName,nFile+j+1)
 
@@ -193,7 +197,7 @@ for file in scriptList :
     outLines.append('transfer_input_files = {0:s}{1:s}.py, {0:s}SystWeights.py, {0:s}ScaleFactor.py,'.format(dirCode,executable))
     outLines.append('{0:s}pileup_{1:s}UL_MC.root, {0:s}pileup_{1:s}UL_data.root, {0:s}cuts_{2:s}_{1:s}.yaml, '.format(dirMC,args.year, args.selection, executable))
     #outLines.append('{0:s}*txt, '.format(dirData))
-    outLines.append('{0:s}/METCorrections.py, {0:s}tauFun2.py, {0:s}generalFunctions.py, {0:s}outTupleW.py, {0:s}outTuple2Lep.py, {0:s}outTupleGjets.py, {0:s}Weights.py, '.format(funcsDir))
+    outLines.append('{0:s}/METCorrections.py, {0:s}tauFunDCH.py, {0:s}generalFunctions.py, {0:s}outTuple.py, {0:s}Weights.py, '.format(funcsDir))
     outLines.append('{0:s}Electron_RunUL2016postVFP_Ele25_EtaLt2p1.root, {0:s}Electron_RunUL2016preVFP_Ele25_EtaLt2p1.root,  {0:s}Electron_RunUL2017_Ele35.root, {0:s}Electron_RunUL2018_Ele35.root, {0:s}muon_Z_{1:s}.json.gz, {0:s}electron_{1:s}.json.gz, {0:s}photon_{1:s}.json.gz, {0:s}correctionlib.tar.gz\n'.format(toolsDir, args.year))
     #outLines.append('{0:s}make_jme.py, {0:s}branchselection.py, {0:s}keep_and_drop.txt, {0:s}taupog.tar.gz\n'.format(toolsDir))
     outLines.append('priority = 2\n')
