@@ -2,7 +2,7 @@ This is how to create condor jobs to run the analyzer
 
 # Step 1 - Make the csv listing the datasets you need - for example MCsamples_2018UL.csv. Please note the format
 
-WJetsToLNu_NLO, Other, 67350.7, 1, 1,,/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM
+`WJetsToLNu_NLO, Other, 67350.7, 1, 1,,/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v2/NANOAODSIM`
 
 in principle, the 1rst and the last arguments are used for the scripts, but the others can be used to define other parameters if needed be, like xsec, SFs etc
 
